@@ -1,0 +1,28 @@
+{
+  "asset_id": "6f0466116d47643c208f9aa922ef1fb63a08c7d0324e3ef2b585f0fcaff3f7e7",
+  "data": {
+    "message-count": {
+      "OFF": 0,
+      "ON": 1
+    },
+    "severity": "OFF",
+    "source": "RAD Observation Event",
+    "subject": "robot",
+    "supplementary-details": {
+      "root_cause": "right_arm_axis_5_speed right_arm_axis_4_speed right_arm_axis_2_speed",
+      "detectionTimeStamp": "1983-06-11 05:48:35",
+      "SieaTaskId": "263-008f7424-d083-446e-81b6-904dc017d940",
+      "topic": "radObservationAnomalyExpressReport",
+      "serviceLevel": "high"
+    },
+    "timestamp": "2026-04-15 12:33:37",
+    "type": "Component Anomaly Detection",
+    "value": 0.4481818181818182
+  },
+  "metadata": {
+    "follow-up-actions": "Check the operation of the DuT (i.e.: the subject)"
+  },
+  "id": "6f0466116d47643c208f9aa922ef1fb63a08c7d0324e3ef2b585f0fcaff3f7e7",
+  "timestamp": 1776249229297,
+  "context_id": "9429d22af343a1dc1301af721406cfc401b13eb0adb61042be8dab6f4aa0dc18"
+}

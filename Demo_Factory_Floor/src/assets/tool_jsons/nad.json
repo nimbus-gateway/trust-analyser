@@ -1,0 +1,27 @@
+{
+  "asset_id": "fd9d104ea66eda625a12e45746ebd363f9b4cfe60f9337f588ad3c2b489cc389",
+  "data": {
+    "severity": "OFF",
+    "source": "NAD Longterm Raw Observation Event",
+    "subject": "ip_src=192.168.1.150;name_src=Robot",
+    "supplementary-details": {
+      "oWindowRaw": 100,
+      "oThresholdRaw": 0.41,
+      "oHysteresis": 0.05,
+      "ON": "0.79",
+      "OFF": "0.21",
+      "detectionTimeStamp": "1983-06-11 23:31:06.000000",
+      "SieaTaskId": "273-c8806f77-234e-4899-b864-9e86bcd3eabf",
+      "topic": "nadRawObservationExpressReport",
+      "serviceLevel": "high"
+    },
+    "timestamp": "2026-04-15 21:32:19",
+    "type": "Component Anomaly Detection"
+  },
+  "metadata": {
+    "follow-up-actions": "Check the operation of the DuT (i.e.: the subject)"
+  },
+  "id": "206fb6f95328feceb29ea7bcbc57aa56e62883914c643811da356f58362cc9e0",
+  "timestamp": 1776281555212,
+  "context_id": "9429d22af343a1dc1301af721406cfc401b13eb0adb61042be8dab6f4aa0dc18"
+}

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pymongo
+python-dotenv
+jinja2
+websockets
+websocket-client
+python-multipart
+requests

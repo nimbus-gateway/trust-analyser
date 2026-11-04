@@ -1,0 +1,20 @@
+{
+"asset_id": "2d4be74069a8efb16a21f3a40535abe314b92dcf5fe5efb999547e017928fccb",
+"auth_id": "0ac9f8071e0d1c65a1bc0ae811a233508649fdf3e0742fa405487a031310c900",
+"auth_public_key": "7z5PRvbZeF3uNxypRw1pAMJQ8Ta6PvrwQbqG1RvBxi1U",
+"data": {
+"message-count": {"ON": 1, "OFF": 0},
+"severity": "OFF",
+"source": "BACON",
+"subject": "robot",
+"supplementary-details": {"oWindowRaw": 500, "oThresholdRaw": 0.33, "oHysteresis": 0.05, "ON": "0.81", "OFF": "0.19", "detectionTimeStamp": "1982-04-17 18:42:44.000000", "SieaTaskId": "495-948f2b6f-1869-49fe-8a47-f49fd174aa7e", "topic": "nadRawObservationExpressReport", "serviceLevel": "high"},
+"timestamp": "2025-08-20 13:41:01",
+"type": "Component Anomaly Detection"
+},
+"metadata": {
+"follow-up-actions": "Check the operation of the DuT (i.e.: the subject)"
+},
+"signature": "Uzg2TL9AnOiFyzLE4iOE710D4vAJv4REeD3Nx1OcDDjDIBaMUEGxdERwMz1fE496zCBunH5ctnK1EIhywUbnAQ",
+"id": "2d4be74069a8efb16a21f3a40535abe314b92dcf5fe5efb999547e017928fccb",
+"timestamp": "1755690061737",
+"context_id": "29398Fdf682bfe9e1121242bf965ce8ee1724c1ffda7696c3c81c6c2"}

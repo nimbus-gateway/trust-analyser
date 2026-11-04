@@ -1,0 +1,72 @@
+{
+  "asset_id": "35e6b73a6685784a5427d53ae5530b72a6b3ae1880ab7270fd49960b6301e39e",
+  "data": {
+    "severity": "Very High",
+    "source": "Spyderisk Adaptor",
+    "state": {
+      "risk": {
+        "overall": "Very High",
+        "components": {
+          "very_high": 3,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "very_low": 1811
+        }
+      },
+      "consequences": [
+        {
+          "asset": {
+            "label": "Robot",
+            "atype": "http://it-innovation.soton.ac.uk/ontologies/trustworthiness/domain#Controller",
+            "uri": "http://it-innovation.soton.ac.uk/ontologies/trustworthiness/system#259c4b8f",
+            "identifier": "8cf2ab2e"
+          },
+          "label": "LossOfReliability",
+          "description": "The device, process or human is liable to make errors with an unacceptable frequency or extent. Caused by internal failings including lack of expertise, software bugs, etc., by using forged, corrupt or inaccurate information as input, or by a dependency on some other asset that is not reliable.",
+          "impact": "Medium",
+          "likelihood": "High",
+          "risk": "Very High",
+          "uri": "system#MS-LossOfReliability-8cf2ab2e"
+        },
+        {
+          "asset": {
+            "label": "Scene Data",
+            "atype": "http://it-innovation.soton.ac.uk/ontologies/trustworthiness/domain#Data",
+            "uri": "http://it-innovation.soton.ac.uk/ontologies/trustworthiness/system#f52b70b8",
+            "identifier": "9ab06af3"
+          },
+          "label": "LossOfConfidentiality",
+          "description": "Disclosure of data (which may be embedded in an IoT device) to unauthorised parties, or a state where prevention or detection of such a disclosure cannot be ensured.",
+          "impact": "Negligible",
+          "likelihood": "High",
+          "risk": "Very High",
+          "uri": "system#MS-LossOfConfidentiality-9ab06af3"
+        },
+        {
+          "asset": {
+            "label": "Camera Stream",
+            "atype": "http://it-innovation.soton.ac.uk/ontologies/trustworthiness/domain#Data",
+            "uri": "http://it-innovation.soton.ac.uk/ontologies/trustworthiness/system#e5657084",
+            "identifier": "372879c9"
+          },
+          "label": "LossOfConfidentiality",
+          "description": "Disclosure of data (which may be embedded in an IoT device) to unauthorised parties, or a state where prevention or detection of such a disclosure cannot be ensured.",
+          "impact": "Negligible",
+          "likelihood": "High",
+          "risk": "Very High",
+          "uri": "system#MS-LossOfConfidentiality-372879c9"
+        }
+      ]
+    },
+    "subject": "Spyderisk risk state",
+    "timestamp": "2026-04-18 13:57:52",
+    "type": "Spyderisk risk state"
+  },
+  "metadata": {
+    "risk": "risk meta message"
+  },
+  "id": "35e6b73a6685784a5427d53ae5530b72a6b3ae1880ab7270fd49960b6301e39e",
+  "timestamp": 1776520672735,
+  "context_id": "4e7cd1126a5678cf5ab457fcba606a2360af473fe6312d5200d87d18d5b3308c"
+}

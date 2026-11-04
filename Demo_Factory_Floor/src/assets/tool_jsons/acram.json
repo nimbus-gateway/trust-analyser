@@ -1,0 +1,48 @@
+{
+  "asset_id": "6c0ab28e79927ff8021b7358f1227c010596f7ef7aa47c3a2d9cc242abe66ca4",
+  "data": {
+    "most_risky_user_device_pairs": [
+      {
+        "device-name": "Robot",
+        "level": 0.82,
+        "user-id": "User 1"
+      },
+      {
+        "device-name": "Robot_MES_OnServer_1_",
+        "level": 0.63,
+        "user-id": "User 1"
+      },
+      {
+        "device-name": "Router",
+        "level": 0.52,
+        "user-id": "User 1"
+      },
+      {
+        "device-name": "MachineLearningBoard",
+        "level": 0.63,
+        "user-id": "User 3"
+      },
+      {
+        "device-name": "Robot_MES_OnServer_1_",
+        "level": 0.63,
+        "user-id": "User 3"
+      },
+      {
+        "device-name": "OpenVPN_OnServer_2_",
+        "level": 0.75,
+        "user-id": "User 3"
+      }
+    ],
+    "severity": "YELLOW",
+    "source": "ACRAM",
+    "timestamp": "2026-3-02 01:06:29",
+    "type": "Aggregated access control risk",
+    "value": 0.35932041118459235
+  },
+  "metadata": {
+    "follow_up_actions": "TELEMETRY indicators affecting this aggregated risk: nokiaRAD -> Robot"
+  },
+  "id": "6c0ab28e79927ff8021b7358f1227c010596f7ef7aa47c3a2d9cc242abe66ca4",
+  "timestamp": 1772406389738,
+  "context_id": "1f85d282cf2b0bebba2b586f010c3d156651144f23e0864eeefa6f671da3b4d6"
+}

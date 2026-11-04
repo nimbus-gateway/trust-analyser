@@ -1,0 +1,241 @@
+<!-- SPDX-License-Identifier: GPL-3.0-only ( contact authors for upgrade consent )
+ * Trust Analyzer - A service to evaluate the trustworthiness of a system
+ * using five trust evaluation categories: security, resilience, reliability,
+ * threat exposure, and intentions. Output is a trust score (0-100) and a
+ * behavior type (normal, suspicious, compromised).
+ *
+ * Copyright (c) 2026 Pasindu Kurupparachchi <pasindu.kurupparachchi@mtu.ie>, Nimbus Research Centre, Munster Technological University
+ *
+ * This work is partially supported by the Horizon Europe TELEMETRY project,
+ * funded by the European Commission under grant number 101119747, and by the
+ * Science Foundation Ireland Centre Advance CRT under grant number 18/CRT/6222.
+ *
+ * Trust analyzer is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (subject to
+ * explicit consent) any later version.
+ *
+ * This tool is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE or SATISFACTORY QUALITY or PERFORMANCE,
+ * comply with any description or regulatory standard, or are safe, accurate,
+ * up to date or complete. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see [https://www.gnu.org/licenses/.](https://www.gnu.org/licenses/)
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Rules Modal Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="p-4">
+    <div class="container">
+        <h2>Advanced Rules Modal Test</h2>
+        <p>Testing the rule builder modal functionality</p>
+        
+        <div id="advancedRulesPanel" class="card p-3 mb-3">
+            <h6>Define Evaluation Rules</h6>
+            <p class="text-muted small">Create rules using JSON path expressions and conditional operators.</p>
+            <div id="rulesList"></div>
+            <button type="button" class="btn btn-sm btn-primary" id="addRuleBtn">+ Add Rule</button>
+            <button type="button" class="btn btn-sm btn-secondary" id="clearRulesBtn">Clear All Rules</button>
+        </div>
+        
+        <div id="testOutput" class="alert alert-info"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let advancedRules = [];
+        
+        // Add rule button
+        document.getElementById('addRuleBtn').addEventListener('click', function() {
+            console.log('Add Rule button clicked');
+            showRuleModal(null);
+        });
+        
+        // Clear rules button
+        document.getElementById('clearRulesBtn').addEventListener('click', function() {
+            if (confirm('Clear all rules?')) {
+                advancedRules = [];
+                updateRulesDisplay();
+            }
+        });
+        
+        function updateRulesDisplay() {
+            const rulesList = document.getElementById('rulesList');
+            if (advancedRules.length === 0) {
+                rulesList.innerHTML = '<p class="text-muted">No rules defined yet. Click "Add Rule" to create one.</p>';
+                return;
+            }
+            let html = '<div class="mb-3"><strong>Rules (' + advancedRules.length + '):</strong></div>';
+            advancedRules.forEach((rule, idx) => {
+                html += '<div class="card mb-2 p-2"><div class="d-flex justify-content-between align-items-center">';
+                html += '<div><strong>' + rule.name + '</strong><br>';
+                html += '<span class="text-secondary small">Impact: ' + rule.impact_level + '</span></div>';
+                html += '<div><button type="button" class="btn btn-sm btn-warning" data-rule-idx="' + idx + '" onclick="editRule(this)">Edit</button> ';
+                html += '<button type="button" class="btn btn-sm btn-danger" data-rule-idx="' + idx + '" onclick="deleteRule(this)">Delete</button></div>';
+                html += '</div></div>';
+            });
+            rulesList.innerHTML = html;
+        }
+        
+        function editRule(btn) {
+            const idx = parseInt(btn.getAttribute('data-rule-idx'));
+            showRuleModal(idx);
+        }
+        
+        function deleteRule(btn) {
+            const idx = parseInt(btn.getAttribute('data-rule-idx'));
+            if (confirm('Delete rule: ' + advancedRules[idx].name + '?')) {
+                advancedRules.splice(idx, 1);
+                updateRulesDisplay();
+            }
+        }
+        
+        function showRuleModal(editIdx) {
+            console.log('showRuleModal called with editIdx:', editIdx);
+            const isEdit = editIdx !== null;
+            const rule = isEdit ? advancedRules[editIdx] : { name: '', condition_groups: [], group_connector: 'AND', impact_level: 'medium', enabled: true };
+            
+            // Create modal HTML
+            let modalHtml = '<div class="modal fade" id="ruleModal"><div class="modal-dialog modal-lg"><div class="modal-content">';
+            modalHtml += '<div class="modal-header"><h5>' + (isEdit ? 'Edit' : 'Add New') + ' Rule</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>';
+            modalHtml += '<div class="modal-body">';
+            
+            // Rule name
+            modalHtml += '<div class="mb-3"><label class="form-label">Rule Name</label><input type="text" class="form-control" id="ruleName" value="' + (rule.name || '') + '" placeholder="e.g., Admin User Check"></div>';
+            
+            // Impact level
+            modalHtml += '<div class="mb-3"><label class="form-label">Impact Level</label>';
+            modalHtml += '<select class="form-select" id="ruleImpactLevel">';
+            ['low', 'medium', 'high'].forEach(lvl => {
+                modalHtml += '<option value="' + lvl + '" ' + (rule.impact_level === lvl ? 'selected' : '') + '>' + lvl.charAt(0).toUpperCase() + lvl.slice(1) + '</option>';
+            });
+            modalHtml += '</select></div>';
+            
+            // Enabled toggle
+            modalHtml += '<div class="mb-3"><div class="form-check"><input class="form-check-input" type="checkbox" id="ruleEnabled" ' + (rule.enabled ? 'checked' : '') + '><label class="form-check-label" for="ruleEnabled">Enable this rule</label></div></div>';
+            
+            // Group connector
+            modalHtml += '<div class="mb-3"><label class="form-label">Combine Condition Groups With</label>';
+            modalHtml += '<select class="form-select" id="ruleGroupConnector">';
+            ['AND', 'OR'].forEach(conn => {
+                modalHtml += '<option value="' + conn + '" ' + (rule.group_connector === conn ? 'selected' : '') + '>' + conn + '</option>';
+            });
+            modalHtml += '</select></div>';
+            
+            // Condition groups
+            modalHtml += '<hr><h6>Condition Groups</h6>';
+            modalHtml += '<div id="conditionGroupsList"></div>';
+            modalHtml += '<button type="button" class="btn btn-sm btn-info" id="addConditionGroupBtn">+ Add Condition Group</button>';
+            
+            modalHtml += '</div>';
+            modalHtml += '<div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>';
+            modalHtml += '<button type="button" class="btn btn-primary" id="saveRuleBtn">Save Rule</button></div>';
+            modalHtml += '</div></div></div>';
+            
+            // Create and show modal
+            const modalDiv = document.createElement('div');
+            modalDiv.innerHTML = modalHtml;
+            document.body.appendChild(modalDiv);
+            
+            const modalEl = modalDiv.querySelector('#ruleModal');
+            const modal = new bootstrap.Modal(modalEl);
+            
+            console.log('Modal created, getting element references...');
+            
+            // Use modalDiv for scoped queries
+            const ruleName = modalDiv.querySelector('#ruleName');
+            const ruleImpactLevel = modalDiv.querySelector('#ruleImpactLevel');
+            const ruleEnabled = modalDiv.querySelector('#ruleEnabled');
+            const ruleGroupConnector = modalDiv.querySelector('#ruleGroupConnector');
+            const addConditionGroupBtn = modalDiv.querySelector('#addConditionGroupBtn');
+            const saveRuleBtn = modalDiv.querySelector('#saveRuleBtn');
+            const conditionGroupsList = modalDiv.querySelector('#conditionGroupsList');
+            
+            console.log('Element references obtained:', {
+                ruleName: ruleName !== null,
+                ruleImpactLevel: ruleImpactLevel !== null,
+                ruleEnabled: ruleEnabled !== null,
+                addConditionGroupBtn: addConditionGroupBtn !== null,
+                saveRuleBtn: saveRuleBtn !== null
+            });
+            
+            // Populate condition groups display
+            updateConditionGroupsDisplay(rule.condition_groups || [], conditionGroupsList);
+            
+            // Add condition group button
+            addConditionGroupBtn.addEventListener('click', function() {
+                console.log('Add Condition Group clicked');
+                rule.condition_groups = rule.condition_groups || [];
+                rule.condition_groups.push({ conditions: [], connector: 'AND', description: '' });
+                updateConditionGroupsDisplay(rule.condition_groups, conditionGroupsList);
+            });
+            
+            // Save rule button
+            saveRuleBtn.addEventListener('click', function() {
+                console.log('Save Rule clicked');
+                const name = ruleName.value.trim();
+                if (!name) {
+                    alert('Please enter a rule name');
+                    return;
+                }
+                if (!rule.condition_groups || rule.condition_groups.length === 0) {
+                    alert('Please add at least one condition group');
+                    return;
+                }
+                
+                rule.name = name;
+                rule.impact_level = ruleImpactLevel.value;
+                rule.enabled = ruleEnabled.checked;
+                rule.group_connector = ruleGroupConnector.value;
+                
+                if (isEdit) {
+                    advancedRules[editIdx] = rule;
+                } else {
+                    advancedRules.push(rule);
+                }
+                
+                console.log('Rule saved:', rule);
+                updateRulesDisplay();
+                modal.hide();
+                setTimeout(() => modalDiv.remove(), 300);
+            });
+            
+            // Close modal cleanup
+            modalEl.addEventListener('hidden.bs.modal', () => {
+                setTimeout(() => modalDiv.remove(), 10);
+            });
+            
+            console.log('Showing modal...');
+            modal.show();
+        }
+        
+        function updateConditionGroupsDisplay(groups, container) {
+            if (!container) {
+                container = document.getElementById('conditionGroupsList');
+            }
+            if (!groups || groups.length === 0) {
+                container.innerHTML = '<p class="text-muted small">No condition groups yet</p>';
+                return;
+            }
+            let html = '';
+            groups.forEach((grp, gIdx) => {
+                html += '<div class="card mb-2 p-2"><div class="d-flex justify-content-between align-items-start">';
+                html += '<div class="flex-grow-1">';
+                html += '<small><strong>Group ' + (gIdx + 1) + ':</strong> ' + (grp.conditions ? grp.conditions.length : 0) + ' condition(s)</small>';
+                html += '</div></div></div>';
+            });
+            container.innerHTML = html;
+        }
+        
+        // Log that script is ready
+        console.log('Script ready, advancedRules:', advancedRules);
+        document.getElementById('testOutput').innerHTML = '<strong>✅ Modal test page loaded</strong><br>Open browser console (F12) to see debug logs. Click "Add Rule" button above.';
+    </script>
+</body>
+</html>

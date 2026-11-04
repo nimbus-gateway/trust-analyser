@@ -1,0 +1,47 @@
+{
+  "context_id": "64d2a7ee79e03e61ea9f492b43bc5a1ce698b64bf014c7507db840b0e57580bd",
+  "id": "871d3d8842d1f3dba1b94a40b79914051bd00d113b458e6047d7317d437f103d",
+  "timestamp": 1771585315773,
+  "asset_id": "871d3d8842d1f3dba1b94a40b79914051bd00d113b458e6047d7317d437f103d",
+  "data": {
+    "severity": "ON",
+    "source": "SBOM Tool 2",
+    "subject": "ip_src=192.168.1.101;name_src=WiFi_AP",
+    "timestamp": "2026-02-20 12:01:55",
+    "type": "CVE list",
+    "value": "79",
+    "CVE_list": [
+      {
+        "vendor": "thekelleys",
+        "product": "dnsmasq",
+        "version": "2.84",
+        "cve_number": "CVE-2023-28450",
+        "severity": "HIGH",
+        "score": "7.5",
+        "source": "NVD",
+        "cvss_version": "3",
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "paths": "",
+        "remarks": "NewFound",
+        "comments": ""
+      },
+      {
+        "vendor": "thekelleys",
+        "product": "dnsmasq",
+        "version": "2.84",
+        "cve_number": "CVE-2023-50387",
+        "severity": "HIGH",
+        "score": "7.5",
+        "source": "NVD",
+        "cvss_version": "3",
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "paths": "",
+        "remarks": "NewFound",
+        "comments": ""
+      }
+    ]
+  },
+  "metadata": {
+    "follow-up-actions": "TBD"
+  }
+}

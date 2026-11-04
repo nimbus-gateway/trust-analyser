@@ -1,0 +1,23 @@
+{
+  "asset_id": "0a58ead60cf1a1732ee82b2dec115f77330c8d4631cfb93281d04798bea8ebc5",
+  "data": {
+    "severity": "ON",
+    "source": "I4RI Observation Event",
+    "subject": "ip_src=192.168.1.150;name_src=Robot",
+    "supplementary-details": {
+      "timestampOriginal": "1983-06-07 03:01:58.771",
+      "detectionTimeStamp": "2026-04-13 08:50:07.524",
+      "SieaTaskId": "189-3cef5c74-5435-4c35-b918-10d1c59fcfc7",
+      "topic": "i4riObservationAnomalyExpressReport",
+      "serviceLevel": "high"
+    },
+    "timestamp": "2026-04-13 10:50:21",
+    "type": "Component Anomaly Detection"
+  },
+  "metadata": {
+    "follow-up-actions": "Check the operation of the DuT (i.e.: the subject)"
+  },
+  "id": "0a58ead60cf1a1732ee82b2dec115f77330c8d4631cfb93281d04798bea8ebc5",
+  "timestamp": 1776070245719,
+  "context_id": "9429d22af343a1dc1301af721406cfc401b13eb0adb61042be8dab6f4aa0dc18"
+}

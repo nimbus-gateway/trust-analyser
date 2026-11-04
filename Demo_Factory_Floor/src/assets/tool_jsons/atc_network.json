@@ -1,0 +1,36 @@
+{
+  "asset_id": "1b84afef3a9ff24f864690d341cf0f256ede933b73f29bbffde301d4c51bc4ff",
+  "data": {
+    "message-count": {
+      "ON": 1
+    },
+    "severity": "OFF",
+    "source": "ATC Network Event",
+    "subject": "ip_src=192.168.1.250;name_src=ML_Board;ip_dst=91.99.179.108;name_dst=",
+    "supplementary-details": {
+      "root_cause": "src_ip_type",
+      "traffic_participants": [
+        "192.168.1.250",
+        "91.99.179.108"
+      ],
+      "involved_ports": [
+        38084,
+        22
+      ],
+      "packets_exchanged": 1972,
+      "detectionTimeStamp": "2025-02-24 10:58:34",
+      "SieaTaskId": "227-30161efa-3e8c-488a-a826-19eea22fa2bd",
+      "topic": "atcNetAnomalyExpressReport",
+      "serviceLevel": "medium"
+    },
+    "timestamp": "2026-04-14 16:55:14",
+    "type": "Network Anomaly Detection",
+    "value": 0.07193401455879211
+  },
+  "metadata": {
+    "follow-up-actions": "Check the network traffic at the tapping point"
+  },
+  "id": "3993550b8b909e43ab5d3a1499b961ca4161417713dc064ffba8ec277c98e38b",
+  "timestamp": 1776178530382,
+  "context_id": "9429d22af343a1dc1301af721406cfc401b13eb0adb61042be8dab6f4aa0dc18"
+}
